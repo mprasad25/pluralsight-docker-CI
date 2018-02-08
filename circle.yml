@@ -1,3 +1,16 @@
-test:
-  override:
-    - mocha
+version: 2
+executorType: docker
+containerInfo:
+  - image: node:latest
+stages:
+  build:
+    workDir: /home/ubuntu/action
+    steps:
+      - type: checkout
+      - type: add-ssh-keys
+      - type: shell
+        name: Install Dependencies
+        command: npm install
+      - type: shell
+        name: NPM Test
+        command: npm test
